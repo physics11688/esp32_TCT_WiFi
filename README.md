@@ -30,6 +30,7 @@
 # ↑ が出来ない人は ssh を調べるとして, とりあえず ↓ で出来る
 > git clone https://github.com/physics11688/esp32_TCT_WiFi.git
 
+# 移動
 > cd esp32_TCT_WiFi.git
 
 > ls
@@ -78,7 +79,7 @@ drwxrwxrwx 1 takuo   4096 12月  9 15:23 examples/
 
 <br>
 
-```arduino
+```cpp
 #include <Arduino.h>   // platformio 用
 #include "TCT_WiFi.h"  // インクルードします
 const char* SSID      = "TCT802.1X";       // アクセスポイントの SSID
