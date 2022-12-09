@@ -4,7 +4,7 @@
  *  connect_TCTwifi() → そのまんま
  *  check_auth()      → 認証の状態をチェックします
  *  get_auth_page()   → 認証用ページにアクセスします
- *  uthenticate(void) → 実際にPOSTにして認証を行います
+ *  authenticate(void) → 実際にPOSTにして認証を行います
  *
  *  Author: physics11688 - 9.12.2022
  *
