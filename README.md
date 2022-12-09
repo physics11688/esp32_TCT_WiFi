@@ -29,7 +29,7 @@
 
 <br>
 
-- ArduinoIDE を使っている場合は[ボードマネージャURL](https://arduinobook.stradty.com/accounts/Appendix3-1/#arduino%E7%92%B0%E5%A2%83%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86)を設定すること
+- ArduinoIDE を使っている場合は[ボードマネージャURL](https://arduinobook.stradty.com/accounts/Appendix3-1/#arduino%E7%92%B0%E5%A2%83%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86)を設定すること<br>
 ちなみに ↑ のページのIDとパスワードが分からない場合は,[ここにアクセスする](https://kosenjp.sharepoint.com/sites/tokuyama_math/Shared%20Documents/Forms/AllItems.aspx?csf=1&=&e=KqWJAU&cid=c6b07108%2D9ebd%2D4086%2D9b64%2Db93a75877c42&FolderCTID=0x012000BB4AF7FACC37C8499A7FDC4EDFA32C79&id=%2Fsites%2Ftokuyama%5Fmath%2FShared%20Documents%2F%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E9%96%A2%E9%80%A3%2F4%5FC%E3%81%A8Arduino&viewid=2457f412%2D06ce%2D47d6%2Da1a7%2D51703d5e915a).
 
 <br>
