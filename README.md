@@ -47,13 +47,13 @@
 
 > ls
 合計 236
-drwxrwxrwx 1 takuo   4096 12月  9 15:23 ./
-drwxrwxrwx 1 takuo   4096 12月  9 15:17 ../
-drwxrwxrwx 1 takuo   4096 12月  9 13:40 .git/
--rwxrwxrwx 1 takuo   3302 12月  9 15:56 README.md*
-drwxrwxrwx 1 takuo   4096 12月  9 14:34 TCT_WiFi/     # こいつをまるごとコピーして使う
-drwxrwxrwx 1 takuo   4096 12月  9 15:23 examples/
--rwxrwxrwx 1 takuo 233650 12月  9 15:17 pic.svg*
+drwxrwxrwx 1 -----   4096 12月  9 15:23 ./
+drwxrwxrwx 1 -----   4096 12月  9 15:17 ../
+drwxrwxrwx 1 -----   4096 12月  9 13:40 .git/
+-rwxrwxrwx 1 -----   3302 12月  9 15:56 README.md*
+drwxrwxrwx 1 -----   4096 12月  9 14:34 TCT_WiFi/     # こいつをまるごとコピーして使う
+drwxrwxrwx 1 -----   4096 12月  9 15:23 examples/
+-rwxrwxrwx 1 ----- 233650 12月  9 15:17 pic.svg*
 
 # ArduinoIDEの場合
 ## Windows
