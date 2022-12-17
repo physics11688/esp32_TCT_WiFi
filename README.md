@@ -9,18 +9,6 @@
 
 創造演習やら卒研やら単に構内でESP32で遊ぶやら, 自由に使ってください.
 
-<br>
-
-> **Warning**
-> - コード内にアカウントとパスワードを書く必要があるので, <br>
-> ESP32を放置する場合はバイナリを吸い出されないように
-> <br>
-> 
-> - ↑と同じでコードの共有(githubとか)するときは気をつけるできればスクリプトを書いて<br>
-> pushの前に個人情報を隠す処理をした方がいい
->
-> <br>
-> 
 
 <br>
 
@@ -91,6 +79,24 @@ drwxrwxrwx 1 -----   4096 12月  9 15:23 examples/
 
 <br>
 
+### 通常版
+
+<br>
+
+> **Warning**
+> - コード内にアカウントとパスワードを書く必要があるので, <br>
+> ESP32を放置する場合はバイナリを吸い出されないように
+> <br>
+> 
+> - ↑と同じでコードの共有(githubとか)するときは気をつけるできればスクリプトを書いて<br>
+> pushの前に個人情報を隠す処理をした方がいい
+>
+> <br>
+> 
+
+<br>
+
+
 ```cpp
 #include <Arduino.h>   // platformio 用
 #include "TCT_WiFi.h"  // インクルードします
@@ -131,4 +137,64 @@ void loop() {
     delay(1000);
 }
 
+```
+
+<br>
+
+### セキュア版
+
+- ESP32でアクセスポイントを立てます<br>
+
+- スマホやPCで ESP32_TestAP って名前のアクセスポイントに接続します<br>
+
+- ↑ の端末のWebブラウザで [192.168.21.1](http://192.168.21.1) へアクセスしてください<br>
+
+- 認証用のユーザー名とパスワードを入力します<br>
+
+- アクセスポイントの機能を終了し, 認証プロセスへ移行します
+
+<br>
+
+![webform.png](./webform.png)
+
+
+
+```cpp
+#include <Arduino.h>
+#include "TCT_WiFi.h"
+
+
+const char* ESP32_ssid  = "ESP32_TestAP";  // ESP32のアクセスポイント名
+const char* AP_password = "test12345";     // ↑ のパスワード
+const char* SSID        = "TCT802.1X";     // 接続したいアクセスポイントの SSID
+const IPAddress ip(192, 168, 43, 50);      // TCT内で使用したいIPアドレス. 重複していないもの使う.
+// 利用可能IPアドレス: 192.168.40.2 ~ 192.168.47.254
+
+void setup() {
+    Serial.begin(115200);
+    delay(10);
+
+    get_param(ESP32_ssid, AP_password);  // アクセスポイント＋WebForm
+    IPAddress localIP = connect_TCTwifi_Secure(SSID, ip);  // セキュア版
+    Serial.print("local IP: ");  // 以降は通常版と同じ
+    Serial.println(localIP);
+
+    // 認証チェック
+    int counter = 0;                     // カウンタ
+    while (check_auth() != IN_ENABLE) {  // 認証されていなければループ
+        authenticate();                  // 認証開始
+        delay(500);
+        Serial.print(".");
+        counter++;
+        if (counter >= 20) {  // 10秒経過したら
+            ESP.restart();    // ESP32ボードをリセット
+        }
+    }
+    Serial.println("");
+
+
+    /********** ここから自分のやりたい処理を書く **************/
+}
+
+void loop() { delay(1000); }
 ```
