@@ -101,9 +101,11 @@ drwxrwxrwx 1 -----   4096 12月  9 15:23 examples/
 #include <Arduino.h>   // platformio 用
 #include "TCT_WiFi.h"  // インクルードします
 const char* SSID      = "TCT802.1X";       // アクセスポイントの SSID
+const IPAddress ip(192, 168, 43, 50);      // TCT内で使用したいIPアドレス. 重複していないもの使う.
+// 利用可能IPアドレス: 192.168.40.2 ~ 192.168.47.254
+
 const char* USER_NAME = "m99kadomatu";     // アカウント名: m99kadomatu とか
 const char* PASSWORD  = "trumpet23234";   // パスワード: trumpet23234 とか
-
 
 void setup() {
     Serial.begin(115200);
@@ -111,7 +113,7 @@ void setup() {
 
     // 1/2. wifi接続. この時点ではLANには参加してるけど外には出れない
     // connect_TCTwifi() は 30秒待ってもLANに参加できないときは再起動するようにしてある
-    IPAddress localIP = connect_TCTwifi(SSID, USER_NAME, PASSWORD);
+    IPAddress localIP = connect_TCTwifi(SSID, ip, USER_NAME, PASSWORD);
     Serial.print("local IP: ");
     Serial.println(localIP);
 
