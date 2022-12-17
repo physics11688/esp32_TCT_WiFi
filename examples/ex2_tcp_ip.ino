@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "TCT_WiFi.h"
+
 const char* SSID = "TCT802.1X";        // アクセスポイントの SSID
 const IPAddress ip(192, 168, 43, 50);  // TCT内で使用したいIPアドレス. 重複していないもの使う.
 // 利用可能IPアドレス: 192.168.40.2 ~ 192.168.47.254

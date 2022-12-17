@@ -106,7 +106,7 @@ const IPAddress ip(192, 168, 43, 50);      // TCT内で使用したいIPアド�
 // 利用可能IPアドレス: 192.168.40.2 ~ 192.168.47.254
 
 const char* USER_NAME = "m99kadomatu";     // アカウント名: m99kadomatu とか
-const char* PASSWORD  = "trumpet23234";   // パスワード: trumpet23234 とか
+const char* PASSWORD  = "trumpet23234";    // パスワード: trumpet23234 とか
 
 void setup() {
     Serial.begin(115200);
