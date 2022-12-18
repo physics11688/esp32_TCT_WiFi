@@ -177,9 +177,11 @@ void setup() {
     Serial.begin(115200);
     delay(10);
 
-    get_param(ESP32_ssid, AP_password);  // アクセスポイント＋WebForm
+    get_param(ESP32_ssid, AP_password);
+    // wifi接続. この時点ではLANには参加してるけど外には出れない
+    // connect_TCTwifiは 30秒待ってもLANに参加できないときは再起動する
     IPAddress localIP = connect_TCTwifi_Secure(SSID, ip);  // セキュア版
-    Serial.print("local IP: ");  // 以降は通常版と同じ
+    Serial.print("local IP: ");
     Serial.println(localIP);
 
     // 認証チェック
@@ -193,7 +195,6 @@ void setup() {
             ESP.restart();    // ESP32ボードをリセット
         }
     }
-    Serial.println("");
 
 
     /********** ここから自分のやりたい処理を書く **************/

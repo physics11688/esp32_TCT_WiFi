@@ -39,8 +39,6 @@ IPAddress connect_TCTwifi(const char* SSID, const IPAddress user_ip, const char*
         WiFi.disconnect(true);  // 初期化のためにwifi切断
     }
     WiFi.mode(WIFI_STA);  // 初期化
-    Serial.println(USER);
-    Serial.println(PASS);
 
     // 接続開始
     WiFi.begin(SSID, WPA2_AUTH_PEAP, EAP_IDENTITY, USER_NAME, PASSWORD);
@@ -83,7 +81,7 @@ Auth_Status check_auth(void) {
                 // Serial.println(String("Redirect URL: " + *p_authpageURL));
                 status = IN_DISABLE;
             } else {
-                // Serial.println("already authenticated");
+                Serial.println("already authenticated");
                 // Serial.println(String("URL: ") + ipechoURL);
                 // Serial.println(String("status code: ") + httpCode + "\n");
                 // Serial.println(body);
