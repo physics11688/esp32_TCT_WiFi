@@ -1,10 +1,16 @@
 /*
  * WiFiライブラリのTCT専用ラッパーライブラリ
  *
+ *  <通常版>
  *  connect_TCTwifi() → そのまんま
  *  check_auth()      → 認証の状態をチェックします
  *  get_auth_page()   → 認証用ページにアクセスします
  *  authenticate(void) → 実際にPOSTにして認証を行います
+ *
+ * <セキュア版>
+ * set_html() → ユーザー名＆パスワード入力用のWebページのbodyを返す
+ * get_param → アクセスポイントを立ててパラメータ取得をする
+ * connect_TCTwifi_Secure() → 通常版の関数のラッパー
  *
  *  Author: physics11688 - 9.12.2022
  *
@@ -169,7 +175,7 @@ String set_html(const char* ESP32_ssid) {
     return body;
 }
 
-/* セキュア版で使用: アクセスポイントを立ててパラーメタ取得 */
+/* セキュア版で使用: アクセスポイントを立ててパラメータ取得 */
 void get_param(const char* ESP32_ssid, const char* AP_password) {
     const IPAddress ESP32_ip(192, 168, 21, 1);          // ESP32のIPアドレス. 固定しておく.
     const IPAddress ESP32_AP_subnet(255, 255, 255, 0);  // サブネットマスク
@@ -224,7 +230,7 @@ void get_param(const char* ESP32_ssid, const char* AP_password) {
 }
 
 
-/* セキュア版で使用*/
+/* セキュア版で使用 */
 IPAddress connect_TCTwifi_Secure(const char* SSID, const IPAddress user_ip) {
     char USER_NAME[50];
     char PASSWORD[50];
