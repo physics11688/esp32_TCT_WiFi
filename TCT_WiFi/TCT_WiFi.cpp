@@ -81,7 +81,7 @@ Auth_Status check_auth(void) {
                 // Serial.println(String("Redirect URL: " + *p_authpageURL));
                 status = IN_DISABLE;
             } else {
-                Serial.println("already authenticated");
+                Serial.println("\nalready authenticated");
                 // Serial.println(String("URL: ") + ipechoURL);
                 // Serial.println(String("status code: ") + httpCode + "\n");
                 // Serial.println(body);
@@ -132,7 +132,7 @@ Auth_Status authenticate(void) {
     if (httpCode > 0) {
         if (httpCode == HTTP_CODE_OK) {
             String body = reuse_http.getString();
-            Serial.println("Authentication Successful");
+            Serial.println("\nAuthentication Successful");
             Serial.print("global IP: ");
             Serial.println(body);
             status = IN_ENABLE;
