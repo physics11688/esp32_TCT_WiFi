@@ -19,8 +19,9 @@
 
 #include <Arduino.h>  // PlatformIO用
 #include <TCT_WiFi.h>
-#include <WiFi.h>      // Wifi library
-#include "esp_wpa2.h"  // wpa2 library for connections to Enterprise networks
+#include <WiFi.h>       // Wifi library
+#include <DNSServer.h>  // DNSサーバ用
+#include "esp_wpa2.h"   // wpa2 library for connections to Enterprise networks
 #include <HTTPClient.h>
 
 #define EAP_IDENTITY "login"
@@ -33,6 +34,7 @@ String authpageURL = "";                             // 認証用ページのURL
 const IPAddress subnet(255, 255, 248, 0);    // 　サブネットマスク
 const IPAddress gateway(192, 168, 40, 1);    // デフォルトゲートフェイ
 const IPAddress primaryDNS(192, 168, 6, 1);  // DNSサーバ
+const byte DNS_PORT = 53;
 
 
 /* WiFiに実際に接続する関数 */
@@ -179,16 +181,21 @@ String set_html(const char* ESP32_ssid) {
 void get_param(const char* ESP32_ssid, const char* AP_password) {
     const IPAddress ESP32_ip(192, 168, 21, 1);          // ESP32のIPアドレス. 固定しておく.
     const IPAddress ESP32_AP_subnet(255, 255, 255, 0);  // サブネットマスク
+    DNSServer dnsServer;                                // DNSサーバ
     WiFiServer server(80);                              // 80番ポートでリッスン
     Serial.println("Configuring access point...");
 
     WiFi.softAP(ESP32_ssid, AP_password);
     WiFi.softAPConfig(ESP32_ip, ESP32_ip, ESP32_AP_subnet);  // AP設定
 
+    // if DNSServer is started with "*" for domain name, it will reply with
+    // provided IP to all DNS request
+    dnsServer.start(DNS_PORT, "*", ESP32_ip);
     server.begin();  // 開始
     Serial.println("Server started\n");
 
     while (true) {
+        dnsServer.processNextRequest();
         WiFiClient client = server.available();  // リッスン
 
         if (client) {  // クライアントからconnectされたら
@@ -226,6 +233,7 @@ void get_param(const char* ESP32_ssid, const char* AP_password) {
         }
     }
     Serial.println("<Closing access point... >\n");
+    dnsServer.stop();
     server.end();
 }
 
